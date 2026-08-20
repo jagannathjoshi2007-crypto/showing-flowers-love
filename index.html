@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Hand Flower Garden</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div id="stage">
+
+        <video id="video" autoplay muted playsinline></video>
+
+        <canvas id="handCanvas"></canvas>
+
+        <div id="flowers"></div>
+
+        <div id="cursor1" class="cursor-dot"></div>
+        <div id="cursor2" class="cursor-dot"></div>
+
+        <div id="hud">
+
+            <div id="status">
+                Camera starting...
+            </div>
+
+            <div id="fingerCount">
+                Fingers: 0
+            </div>
+
+        </div>
+
+        <div id="loading">
+
+            <div>📷 Camera starting...</div>
+
+            <div class="help">
+                ☝️ 1 finger → Flower<br>
+                ✌️ 2 fingers → Flowers<br>
+                🖐️ 5 fingers → Throw flowers
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js"></script>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

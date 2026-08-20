@@ -1,0 +1,301 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+
+    width: 100%;
+    height: 100%;
+
+    overflow: hidden;
+
+    background: #05070a;
+
+    font-family:
+        Arial,
+        sans-serif;
+}
+
+
+#stage {
+
+    position: relative;
+
+    width: 100vw;
+    height: 100vh;
+
+    overflow: hidden;
+
+    background: #05070a;
+}
+
+
+/* =====================================================
+   CAMERA
+===================================================== */
+
+#video {
+
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    /*
+        IMPORTANT
+
+        We use contain so complete
+        camera frame is visible.
+    */
+
+    object-fit: contain;
+
+    background: #05070a;
+
+    transform: scaleX(-1);
+
+    filter:
+        brightness(.65) saturate(1.1);
+}
+
+
+/* =====================================================
+   HAND CANVAS
+===================================================== */
+
+#handCanvas {
+
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    pointer-events: none;
+
+    z-index: 4;
+}
+
+
+/* =====================================================
+   FLOWERS
+===================================================== */
+
+#flowers {
+
+    position: absolute;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    z-index: 6;
+}
+
+
+.flower {
+
+    position: absolute;
+
+    transform:
+        translate(-50%, -50%) scale(0);
+
+    transition:
+        transform .25s cubic-bezier(.34,
+            1.56,
+            .64,
+            1);
+
+    user-select: none;
+
+    filter:
+        drop-shadow(0 2px 8px rgba(0, 0, 0, .7));
+}
+
+
+.flower.planted {
+
+    transform:
+        translate(-50%, -50%) scale(1);
+}
+
+
+/* =====================================================
+   CURSOR
+===================================================== */
+
+.cursor-dot {
+
+    position: absolute;
+
+    width: 18px;
+    height: 18px;
+
+    border-radius: 50%;
+
+    background: #ffffff;
+
+    border:
+        2px solid #00ffd5;
+
+    box-shadow:
+
+        0 0 8px #00ffd5,
+
+        0 0 20px #00ffd5;
+
+    transform:
+        translate(-50%, -50%);
+
+    pointer-events: none;
+
+    z-index: 10;
+
+    display: none;
+}
+
+
+/* =====================================================
+   HUD
+===================================================== */
+
+#hud {
+
+    position: absolute;
+
+    top: 20px;
+
+    left: 0;
+    right: 0;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 7px;
+
+    z-index: 20;
+
+    pointer-events: none;
+}
+
+
+#status {
+
+    color: white;
+
+    background:
+        rgba(0, 0, 0, .55);
+
+    padding:
+        9px 18px;
+
+    border-radius: 20px;
+
+    backdrop-filter:
+        blur(8px);
+
+    font-size: 14px;
+}
+
+
+#fingerCount {
+
+    color: #00ffd5;
+
+    background:
+        rgba(0, 0, 0, .45);
+
+    padding:
+        5px 14px;
+
+    border-radius: 15px;
+
+    font-size: 12px;
+}
+
+
+/* =====================================================
+   LOADING
+===================================================== */
+
+#loading {
+
+    position: absolute;
+
+    inset: 0;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 12px;
+
+    color: white;
+
+    background: #05070a;
+
+    z-index: 100;
+
+    text-align: center;
+}
+
+
+#loading.hidden {
+
+    display: none;
+}
+
+
+.help {
+
+    opacity: .7;
+
+    font-size: 13px;
+
+    line-height: 1.7;
+}
+
+
+/* =====================================================
+   THROW ANIMATION
+===================================================== */
+
+@keyframes throwFlower {
+
+    0% {
+
+        opacity: 1;
+
+        transform:
+            translate(-50%, -50%) scale(1) rotate(0deg);
+    }
+
+    100% {
+
+        opacity: 0;
+
+        transform:
+            translate(calc(-50% + var(--throw-x)),
+                calc(-50% + var(--throw-y))) scale(.15) rotate(var(--rotation));
+    }
+}
+
+
+.throwing {
+
+    animation:
+        throwFlower .9s cubic-bezier(.2, .7, .3, 1) forwards;
+}
